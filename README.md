@@ -5,7 +5,7 @@ PlugIt is an exploratory side aimed at learning about about **shared libray load
 ## ToDo:
 
 - [ ] Set up the project (cmake, clangd, clangformat, testing, coverage)
-- [ ] Load a shared library 
+- [x] Load a shared library 
 - [ ] Load a class with a simple constructor (no arguments)
 - [ ] Load a class with a complex constructor
 - [ ] Define a plugin from its interface
