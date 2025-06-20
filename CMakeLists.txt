@@ -34,7 +34,7 @@ if(BUILD_TESTS)
 endif()
 
 if(CODE_COVERAGE AND CMAKE_CXX_COMPILER_ID MATCHES "GNU")
-    add_custom_target(coverage
+    add_custom_target(tests_coverage
         COMMAND lcov --directory . --zerocounters
         COMMAND ${CMAKE_CTEST_COMMAND} --output-on-failure --output-junit test-results.xml
         COMMAND lcov --directory . --capture --output-file coverage.info --ignore-errors mismatch
