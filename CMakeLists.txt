@@ -33,10 +33,10 @@ if(BUILD_TESTS)
     gtest_discover_tests(test_${PROJECT_NAME})
 endif()
 
-if(CODE_COVERAGE AND CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
-    add_custom_target(coverage
+if(CODE_COVERAGE AND CMAKE_CXX_COMPILER_ID MATCHES "GNU")
+    add_custom_target(tests_coverage
         COMMAND lcov --directory . --zerocounters
-        COMMAND ${CMAKE_CTEST_COMMAND} --output-on-failure
+        COMMAND ${CMAKE_CTEST_COMMAND} --output-on-failure --output-junit test-results.xml
         COMMAND lcov --directory . --capture --output-file coverage.info --ignore-errors mismatch
         COMMAND lcov --remove coverage.info '/usr/*' '*gtest*' '*CMakeFiles*' --output-file coverage.filtered.info --ignore-errors unused
         COMMAND genhtml coverage.filtered.info --output-directory coverage-report
