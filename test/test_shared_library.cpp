@@ -21,5 +21,3 @@ TEST(SharedLibrary, FunctionLoadingThrowsIfMisspelled) {
   plugin::SharedLibrary library("libplugit_example.so");
   ASSERT_THROW(library.loadFunction<void()>("say_hello"), std::runtime_error);
 }
-
-TEST(Test, FaillingTest) { ASSERT_TRUE(false); }
