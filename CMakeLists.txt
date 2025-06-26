@@ -44,3 +44,13 @@ if(CODE_COVERAGE AND CMAKE_CXX_COMPILER_ID MATCHES "GNU")
         COMMENT "Generating code coverage report"
     )
 endif()
+
+if(UNIX AND CMAKE_EXPORT_COMPILE_COMMANDS)
+    add_custom_command(
+        TARGET ${PROJECT_NAME} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E create_symlink
+                ${CMAKE_BINARY_DIR}/compile_commands.json
+                ${CMAKE_SOURCE_DIR}/compile_commands.json
+        COMMENT "Linking compile_commands.json to project root"
+    )
+endif()
