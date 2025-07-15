@@ -31,6 +31,7 @@ if(BUILD_TESTS)
     add_executable(test_${PROJECT_NAME} test/test_shared_library.cpp)
     target_link_libraries(test_${PROJECT_NAME} gtest_main ${PROJECT_NAME} ${PROJECT_NAME}_example)
     gtest_discover_tests(test_${PROJECT_NAME})
+
 endif()
 
 if(CODE_COVERAGE AND CMAKE_CXX_COMPILER_ID MATCHES "GNU")
@@ -42,15 +43,5 @@ if(CODE_COVERAGE AND CMAKE_CXX_COMPILER_ID MATCHES "GNU")
         COMMAND genhtml coverage.filtered.info --output-directory coverage-report
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
         COMMENT "Generating code coverage report"
-    )
-endif()
-
-if(UNIX AND CMAKE_EXPORT_COMPILE_COMMANDS)
-    add_custom_command(
-        TARGET ${PROJECT_NAME} POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E create_symlink
-                ${CMAKE_BINARY_DIR}/compile_commands.json
-                ${CMAKE_SOURCE_DIR}/compile_commands.json
-        COMMENT "Linking compile_commands.json to project root"
     )
 endif()
